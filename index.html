@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haniif Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS Animation Library CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <!-- tsParticles for Particle Background -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+    <!-- Typed.js for Typewriter Effect -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- Custom Styles -->
+    <style>
+      /* Animated Gradient Background */
+      .animated-gradient {
+        background: linear-gradient(-45deg, #59e3ff, #e76a3c, #d523a0, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      /* Preloader Spinner */
+      #preloader {
+        background-color: #000;
+        z-index: 50;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800 relative">
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 flex items-center justify-center">
+      <div
+        class="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
+      ></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      class="bg-white shadow-lg fixed w-full z-40"
+      data-aos="fade-down"
+      data-aos-duration="1000"
+    >
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between">
+          <!-- Logo & Nav Links -->
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="flex items-center py-5 px-2 text-gray-700 font-bold text-xl"
+            >
+              Haniif
+            </a>
+            <div class="hidden md:flex items-center space-x-1">
+              <a
+                href="#home"
+                class="py-5 px-3 text-gray-700 hover:text-gray-900"
+                >Home</a
+              >
+              <a
+                href="#about"
+                class="py-5 px-3 text-gray-700 hover:text-gray-900"
+                >About</a
+              >
+              <a
+                href="#portfolio"
+                class="py-5 px-3 text-gray-700 hover:text-gray-900"
+                >Portfolio</a
+              >
+              <a
+                href="#skills"
+                class="py-5 px-3 text-gray-700 hover:text-gray-900"
+                >Skills</a
+              >
+              <a
+                href="#contact"
+                class="py-5 px-3 text-gray-700 hover:text-gray-900"
+                >Contact</a
+              >
+            </div>
+          </div>
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button class="mobile-menu-button">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="mobile-menu hidden md:hidden">
+        <a href="#home" class="block py-2 px-4 text-sm hover:bg-gray-200"
+          >Home</a
+        >
+        <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-200"
+          >About</a
+        >
+        <a href="#portfolio" class="block py-2 px-4 text-sm hover:bg-gray-200"
+          >Portfolio</a
+        >
+        <a href="#skills" class="block py-2 px-4 text-sm hover:bg-gray-200"
+          >Skills</a
+        >
+        <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-200"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero Section with Animated Gradient, Particles, and Typed Text -->
+    <section id="home" class="relative h-screen animated-gradient">
+      <!-- Particle Background -->
+      <div id="tsparticles" class="absolute inset-0"></div>
+      <!-- Semi-transparent Overlay -->
+      <div class="absolute inset-0 bg-black opacity-40"></div>
+      <!-- Hero Content -->
+      <div
+        class="relative z-10 max-w-7xl mx-auto px-4 text-center flex flex-col items-center justify-center h-full"
+        data-aos="fade-up"
+        data-aos-duration="1200"
+      >
+        <h1 class="text-5xl font-bold text-white mb-4">
+          Hi, I'm Haniif Satria Wardana
+        </h1>
+        <h2 class="text-3xl text-white mb-6">
+          I'm a <span id="typed" class="font-bold"></span>
+        </h2>
+        <button
+          id="contactBtn"
+          class="mt-6 px-6 py-3 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition transform hover:scale-105"
+        >
+          Download CV
+        </button>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="max-w-7xl mx-auto py-16 px-4">
+      <div data-aos="fade-right" data-aos-duration="1000">
+        <h2 class="text-3xl font-bold text-center mb-8">About Me</h2>
+        <div class="flex flex-col items-center">
+          <img
+            src="images/me.jpg"
+            alt="Haniif Satria Wardana"
+            class="w-32 h-32 rounded-full mb-4"
+          />
+          <p class="text-center text-gray-700 max-w-3xl mx-auto">
+            I love cat, I love playing games such as Valorant, Marvel Rival,
+            etc. Also, I love sport. I hate morning class, and my favorite food
+            is mie goreng.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="bg-gray-200 py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2
+          class="text-3xl font-bold text-center mb-8"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          My Work
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Project Card: Homepaw -->
+          <a
+            href="https://ahmadzaydan.github.io/HCI_Final-Project_Week-12_Homepaw/Week%2012/mainPage.html"
+            target="_blank"
+            class="bg-white rounded shadow overflow-hidden"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+          >
+            <img
+              src="images/homepaw.png"
+              alt="Homepaw Project"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-xl mb-2">Homepaw</h3>
+              <p class="text-gray-600 mb-2">
+                This is my final project HCI – the best website for adopting
+                pets.
+              </p>
+              <p class="text-blue-500 font-semibold text-center">Click me</p>
+            </div>
+          </a>
+          <!-- Project Card: Tracking App -->
+          <a
+            href="https://mbulss.github.io/Tracking-App/"
+            target="_blank"
+            class="bg-white rounded shadow overflow-hidden"
+            data-aos="zoom-in"
+            data-aos-duration="1100"
+          >
+            <img
+              src="images/trackingapp.png"
+              alt="Tracking App Project"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-xl mb-2">Tracking App</h3>
+              <p class="text-gray-600 mb-2">
+                A dynamic tracking application demonstrating modern web
+                development skills.
+              </p>
+              <p class="text-blue-500 font-semibold text-center">Click me</p>
+            </div>
+          </a>
+          <!-- Project Card: Assignment 2 -->
+          <a
+            href="https://mbulss.github.io/2702358065_Assignment2/"
+            target="_blank"
+            class="bg-white rounded shadow overflow-hidden"
+            data-aos="zoom-in"
+            data-aos-duration="1200"
+          >
+            <img
+              src="images/enigma.png"
+              alt="Assignment 2 Project"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-xl mb-2">Assignment 2</h3>
+              <p class="text-gray-600 mb-2">
+                A comprehensive assignment project showcasing advanced
+                problem-solving techniques.
+              </p>
+              <p class="text-blue-500 font-semibold text-center">Click me</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="max-w-7xl mx-auto py-16 px-4">
+      <div data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="text-3xl font-bold text-center mb-8">My Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded shadow">
+            <h3 class="font-bold text-xl mb-2">HTML & CSS</h3>
+            <p class="text-gray-600">
+              Crafting responsive, modern layouts with pixel-perfect precision.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded shadow">
+            <h3 class="font-bold text-xl mb-2">JavaScript</h3>
+            <p class="text-gray-600">
+              Building interactive, dynamic web applications with cutting-edge
+              tech.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded shadow">
+            <h3 class="font-bold text-xl mb-2">React</h3>
+            <p class="text-gray-600">
+              Designing component-based UIs that provide seamless user
+              experiences.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section with Social Links -->
+    <section id="contact" class="bg-gray-200 py-16">
+      <div
+        class="max-w-7xl mx-auto px-4"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h2 class="text-3xl font-bold text-center mb-8">Get In Touch</h2>
+        <!-- Contact Form -->
+        <form class="max-w-lg mx-auto bg-white p-8 rounded shadow">
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700">Name</label>
+            <input
+              id="name"
+              type="text"
+              class="w-full px-3 py-2 border rounded"
+              placeholder="Your Name"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block text-gray-700">Email</label>
+            <input
+              id="email"
+              type="email"
+              class="w-full px-3 py-2 border rounded"
+              placeholder="Your Email"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="message" class="block text-gray-700">Message</label>
+            <textarea
+              id="message"
+              class="w-full px-3 py-2 border rounded"
+              rows="4"
+              placeholder="Your Message"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition transform hover:scale-105"
+          >
+            Send Message
+          </button>
+        </form>
+        <!-- Social Links -->
+      </div>
+    </section>
+
+    <!-- Responsive, Fixed Footer -->
+    <footer class="bg-white py-4 fixed bottom-0 w-full shadow-inner">
+      <div
+        class="max-w-7xl mx-auto px-4 text-center text-gray-600 flex flex-col md:flex-row md:justify-between items-center"
+      >
+        <div>© 2025 Haniif Portfolio. All rights reserved.</div>
+        <div class="mt-2 md:mt-0 flex space-x-6">
+          <a
+            href="https://github.com/Mbulss"
+            target="_blank"
+            class="flex items-center"
+            aria-label="GitHub"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+              alt="GitHub Logo"
+              class="w-6 h-6"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/haniif-satria-wardana-8811aa331/"
+            target="_blank"
+            class="flex items-center"
+            aria-label="LinkedIn"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+              alt="LinkedIn Logo"
+              class="w-6 h-6"
+            />
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript for Interactivity and Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      // Initialize AOS animations
+      AOS.init();
+
+      // Preloader: Hide when the window loads
+      window.addEventListener("load", () => {
+        document.getElementById("preloader").style.display = "none";
+      });
+
+      // Mobile navigation toggle
+      const mobileMenuButton = document.querySelector(".mobile-menu-button");
+      const mobileMenu = document.querySelector(".mobile-menu");
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Smooth scroll for "Hire Me" button
+      document.getElementById("contactBtn").addEventListener("click", () => {
+        document
+          .getElementById("contact")
+          .scrollIntoView({ behavior: "smooth" });
+      });
+
+      // Initialize Typed.js for typewriter effect
+      new Typed("#typed", {
+        strings: ["Programmer", "University Student", "Gamer"],
+        typeSpeed: 70,
+        backSpeed: 40,
+        loop: true,
+      });
+
+      // Initialize tsParticles for particle background in the hero section
+      tsParticles.load("tsparticles", {
+        fpsLimit: 60,
+        particles: {
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+              area: 800,
+            },
+          },
+          color: {
+            value: "#ffffff",
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: 0.5,
+            random: false,
+          },
+          size: {
+            value: 3,
+            random: true,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: false,
+            straight: false,
+            outModes: {
+              default: "out",
+            },
+          },
+        },
+        interactivity: {
+          events: {
+            onHover: {
+              enable: true,
+              mode: "repulse",
+            },
+            resize: true,
+          },
+          modes: {
+            repulse: {
+              distance: 100,
+              duration: 0.4,
+            },
+          },
+        },
+        detectRetina: true,
+      });
+    </script>
+  </body>
+</html>
