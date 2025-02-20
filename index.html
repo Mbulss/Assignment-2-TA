@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haniif Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <style>
+      /* Animated Gradient Background */
+      .animated-gradient {
+        background: linear-gradient(-45deg, #59e3ff, #391197, #d523a0, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      /* Preloader Spinner */
+      #preloader {
+        background-color: #000;
+        z-index: 50;
+      }
+      /* Glassmorphism Navigation */
+      .glass-nav {
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+      }
+      .dark .glass-nav {
+        background: rgba(31, 41, 55, 0.7);
+      }
+      /* Portfolio Card Hover */
+      .card-hover:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+      .btn-hover {
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+      /* Animated Blob in Hero */
+      .blob {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: #ff6ec7;
+        border-radius: 50%;
+        opacity: 0.4;
+        filter: blur(80px);
+        animation: moveBlob 20s ease-in-out infinite;
+      }
+      @keyframes moveBlob {
+        0% {
+          transform: translate(0px, 0px) scale(1);
+        }
+        33% {
+          transform: translate(50px, -30px) scale(1.1);
+        }
+        66% {
+          transform: translate(-40px, 50px) scale(0.9);
+        }
+        100% {
+          transform: translate(0px, 0px) scale(1);
+        }
+      }
+      /* Floating Scroll Indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translate(-50%, 0);
+        }
+        50% {
+          transform: translate(-50%, -10px);
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 relative transition-colors duration-500"
+  >
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 flex items-center justify-center">
+      <div
+        class="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"
+      ></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      class="glass-nav fixed w-full z-40 shadow-lg"
+      data-aos="fade-down"
+      data-aos-duration="1000"
+    >
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center py-4">
+          <div class="flex items-center space-x-4">
+            <a
+              href="#"
+              class="flex items-center text-gray-700 dark:text-gray-200 font-bold text-2xl"
+              >Haniif</a
+            >
+            <div class="hidden md:flex items-center space-x-4">
+              <a
+                href="#home"
+                class="py-2 px-3 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                >Home</a
+              >
+              <a
+                href="#about"
+                class="py-2 px-3 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                >About</a
+              >
+              <a
+                href="#portfolio"
+                class="py-2 px-3 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                >Portfolio</a
+              >
+              <a
+                href="#skills"
+                class="py-2 px-3 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                >Skills</a
+              >
+              <a
+                href="#contact"
+                class="py-2 px-3 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                >Contact</a
+              >
+            </div>
+          </div>
+          <!-- Dark Mode Toggle & Mobile Menu Button -->
+          <div class="flex items-center space-x-4">
+            <button
+              id="darkModeToggle"
+              class="bg-gray-200 dark:bg-gray-700 p-2 rounded-full focus:outline-none"
+              aria-label="Toggle Dark Mode"
+            >
+              <svg
+                id="sunIcon"
+                class="w-6 h-6 text-yellow-500 hidden"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M10 15a5 5 0 100-10 5 5 0 000 10zM10 2a1 1 0 011 1v2a1 1 0 01-2 0V3a1 1 0 011-1zm0 12a1 1 0 011 1v2a1 1 0 01-2 0v-2a1 1 0 011-1zm8-5a1 1 0 01-1 1h-2a1 1 0 010-2h2a1 1 0 011 1zM5 10a1 1 0 011 1H4a1 1 0 010-2h2a1 1 0 011 1zm9.657-4.657a1 1 0 010 1.414L14.414 8.414a1 1 0 01-1.414-1.414l1.243-1.243a1 1 0 011.414 0zM6.414 11.586a1 1 0 010-1.414L7.657 9.93a1 1 0 011.414 1.414L8.828 12a1 1 0 01-1.414 0zM14.414 11.586a1 1 0 001.414-1.414L14.585 9.93a1 1 0 00-1.414 1.414l1.243 1.243zM7.586 8.414a1 1 0 00-1.414 1.414L7.415 11a1 1 0 001.414-1.414L7.586 8.414z"
+                ></path>
+              </svg>
+              <svg
+                id="moonIcon"
+                class="w-6 h-6 text-gray-800 dark:text-gray-200"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M17.293 13.293a8 8 0 11-10.586-10.586 8.001 8.001 0 0010.586 10.586z"
+                ></path>
+              </svg>
+            </button>
+            <button class="mobile-menu-button md:hidden focus:outline-none">
+              <svg
+                class="w-6 h-6 text-gray-700 dark:text-gray-200"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="mobile-menu hidden md:hidden">
+        <a
+          href="#home"
+          class="block py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-700"
+          >Home</a
+        >
+        <a
+          href="#about"
+          class="block py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-700"
+          >About</a
+        >
+        <a
+          href="#portfolio"
+          class="block py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-700"
+          >Portfolio</a
+        >
+        <a
+          href="#skills"
+          class="block py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-700"
+          >Skills</a
+        >
+        <a
+          href="#contact"
+          class="block py-2 px-4 text-sm hover:bg-gray-200 dark:hover:bg-gray-700"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero Section with Animated Gradient, Blob, Particles & Typed Text -->
+    <section
+      id="home"
+      class="relative h-screen animated-gradient overflow-hidden"
+    >
+      <!-- tsParticles Background -->
+      <div id="tsparticles" class="absolute inset-0"></div>
+      <!-- Animated Blob -->
+      <div class="blob"></div>
+      <!-- Semi-transparent Overlay -->
+      <div class="absolute inset-0 bg-black opacity-40"></div>
+      <!-- Hero Content -->
+      <div
+        class="relative z-10 max-w-7xl mx-auto px-4 text-center flex flex-col items-center justify-center h-full"
+        data-aos="fade-up"
+        data-aos-duration="1200"
+      >
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-4">
+          Hi, I'm Haniif Satria Wardana
+        </h1>
+        <h2 class="text-3xl md:text-4xl text-white mb-6">
+          I'm a <span id="typed" class="font-bold"></span>
+        </h2>
+        <button
+          id="contactBtn"
+          class="btn-hover mt-6 px-8 py-3 bg-gradient-to-r from-blue-500 to-teal-500 text-white font-semibold rounded-full hover:from-blue-600 hover:to-teal-600 transition transform hover:scale-105"
+        >
+          Download CV
+        </button>
+      </div>
+      <!-- Floating Scroll Indicator -->
+      <div class="scroll-indicator">
+        <svg
+          class="w-8 h-8 text-white animate-bounce"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="max-w-7xl mx-auto py-16 px-4">
+      <div data-aos="fade-right" data-aos-duration="1000">
+        <h2 class="text-3xl font-bold text-center mb-8">About Me</h2>
+        <div class="flex flex-col items-center">
+          <img
+            src="images/me.png"
+            alt="Haniif Satria Wardana"
+            class="w-32 h-32 rounded-full mb-4 shadow-lg"
+          />
+          <p
+            class="text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto"
+          >
+            I love cats, enjoy playing games such as Valorant and Marvel Rival,
+            and have a passion for sports. I’m not a fan of early classes, and
+            my favorite food is mie goreng.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section (Modal functionality removed) -->
+    <section id="portfolio" class="bg-gray-200 dark:bg-gray-800 py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2
+          class="text-3xl font-bold text-center mb-8"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          My Work
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Portfolio Card: Homepaw -->
+          <div
+            class="bg-white dark:bg-gray-700 rounded shadow overflow-hidden card-hover transform transition duration-300"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+          >
+            <img
+              src="images/homepaw.png"
+              alt="Homepaw Project"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-xl mb-2">Homepaw</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-2">
+                Final project HCI – the best website for adopting pets.
+              </p>
+              <a
+                href="https://ahmadzaydan.github.io/HCI_Final-Project_Week-12_Homepaw/Week%2012/mainPage.html"
+                target="_blank"
+                class="text-blue-500 font-semibold"
+              >
+                Learn More
+              </a>
+            </div>
+          </div>
+          <!-- Portfolio Card: Tracking App -->
+          <div
+            class="bg-white dark:bg-gray-700 rounded shadow overflow-hidden card-hover transform transition duration-300"
+            data-aos="zoom-in"
+            data-aos-duration="1100"
+          >
+            <img
+              src="images/trackingapp.png"
+              alt="Tracking App Project"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-xl mb-2">Tracking App</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-2">
+                Dynamic tracking application showcasing modern web development
+                skills.
+              </p>
+              <a
+                href="https://mbulss.github.io/Tracking-App/"
+                target="_blank"
+                class="text-blue-500 font-semibold"
+              >
+                Learn More
+              </a>
+            </div>
+          </div>
+          <!-- Portfolio Card: Assignment 2 -->
+          <div
+            class="bg-white dark:bg-gray-700 rounded shadow overflow-hidden card-hover transform transition duration-300"
+            data-aos="zoom-in"
+            data-aos-duration="1200"
+          >
+            <img
+              src="images/enigma.png"
+              alt="Assignment 2 Project"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-4">
+              <h3 class="font-bold text-xl mb-2">Assignment 2</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-2">
+                A comprehensive assignment showcasing advanced problem-solving
+                techniques.
+              </p>
+              <a
+                href="https://mbulss.github.io/2702358065_Assignment2/"
+                target="_blank"
+                class="text-blue-500 font-semibold"
+              >
+                Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="max-w-7xl mx-auto py-16 px-4">
+      <div data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="text-3xl font-bold text-center mb-8">My Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="bg-white dark:bg-gray-700 p-6 rounded shadow text-center card-hover transform transition duration-300"
+          >
+            <img
+              src="images/html-css.png"
+              alt="HTML & CSS Icon"
+              class="w-16 h-16 mx-auto mb-4"
+            />
+            <h3 class="font-bold text-xl mb-2">HTML & CSS</h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              Crafting responsive, modern layouts with pixel-perfect precision.
+            </p>
+          </div>
+          <div
+            class="bg-white dark:bg-gray-700 p-6 rounded shadow text-center card-hover transform transition duration-300"
+          >
+            <img
+              src="images/js.png"
+              alt="JavaScript Icon"
+              class="w-16 h-16 mx-auto mb-4"
+            />
+            <h3 class="font-bold text-xl mb-2">JavaScript</h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              Building interactive, dynamic web applications with cutting-edge
+              tech.
+            </p>
+          </div>
+          <div
+            class="bg-white dark:bg-gray-700 p-6 rounded shadow text-center card-hover transform transition duration-300"
+          >
+            <img
+              src="images/react.png"
+              alt="React Icon"
+              class="w-16 h-16 mx-auto mb-4"
+            />
+            <h3 class="font-bold text-xl mb-2">React</h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              Designing component-based UIs for seamless user experiences.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section with Social Links -->
+    <section id="contact" class="bg-gray-200 dark:bg-gray-800 py-16">
+      <div
+        class="max-w-7xl mx-auto px-4"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h2 class="text-3xl font-bold text-center mb-8">Get In Touch</h2>
+        <form
+          class="max-w-lg mx-auto bg-white dark:bg-gray-700 p-8 rounded shadow"
+        >
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700 dark:text-gray-200"
+              >Name</label
+            >
+            <input
+              id="name"
+              type="text"
+              class="w-full px-3 py-2 border rounded"
+              placeholder="Your Name"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block text-gray-700 dark:text-gray-200"
+              >Email</label
+            >
+            <input
+              id="email"
+              type="email"
+              class="w-full px-3 py-2 border rounded"
+              placeholder="Your Email"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="message" class="block text-gray-700 dark:text-gray-200"
+              >Message</label
+            >
+            <textarea
+              id="message"
+              class="w-full px-3 py-2 border rounded"
+              rows="4"
+              placeholder="Your Message"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="w-full py-2 bg-gradient-to-r from-blue-500 to-teal-500 text-white rounded-full hover:from-blue-600 hover:to-teal-600 transition transform hover:scale-105"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Responsive, Fixed Footer -->
+    <footer
+      class="bg-white dark:bg-gray-800 py-4 fixed bottom-0 w-full shadow-inner"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 text-center text-gray-600 dark:text-gray-300 flex flex-col md:flex-row md:justify-between items-center"
+      >
+        <div>© 2025 Haniif Portfolio. All rights reserved.</div>
+        <div class="mt-2 md:mt-0 flex space-x-6">
+          <a
+            href="https://github.com/Mbulss"
+            target="_blank"
+            class="flex items-center"
+            aria-label="GitHub"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+              alt="GitHub Logo"
+              class="w-6 h-6"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/haniif-satria-wardana-8811aa331/"
+            target="_blank"
+            class="flex items-center"
+            aria-label="LinkedIn"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+              alt="LinkedIn Logo"
+              class="w-6 h-6"
+            />
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript for Interactivity and Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      // Initialize AOS animations
+      AOS.init();
+
+      // Preloader: Hide when window loads
+      window.addEventListener("load", () => {
+        document.getElementById("preloader").style.display = "none";
+      });
+
+      // Mobile navigation toggle
+      const mobileMenuButton = document.querySelector(".mobile-menu-button");
+      const mobileMenu = document.querySelector(".mobile-menu");
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Smooth scroll for Download CV button
+      document.getElementById("contactBtn").addEventListener("click", () => {
+        document
+          .getElementById("contact")
+          .scrollIntoView({ behavior: "smooth" });
+      });
+
+      // Initialize Typed.js for typewriter effect
+      new Typed("#typed", {
+        strings: ["Programmer", "University Student", "Gamer"],
+        typeSpeed: 70,
+        backSpeed: 40,
+        loop: true,
+      });
+
+      // Initialize tsParticles for particle background
+      tsParticles.load("tsparticles", {
+        fpsLimit: 60,
+        particles: {
+          number: { value: 80, density: { enable: true, area: 800 } },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5 },
+          size: { value: 3, random: true },
+          move: { enable: true, speed: 2, outModes: { default: "out" } },
+        },
+        interactivity: {
+          events: { onHover: { enable: true, mode: "repulse" }, resize: true },
+          modes: { repulse: { distance: 100, duration: 0.4 } },
+        },
+        detectRetina: true,
+      });
+
+      // Dark Mode Toggle
+      const darkModeToggle = document.getElementById("darkModeToggle");
+      const htmlElement = document.documentElement;
+      darkModeToggle.addEventListener("click", () => {
+        htmlElement.classList.toggle("dark");
+        document.getElementById("sunIcon").classList.toggle("hidden");
+        document.getElementById("moonIcon").classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>
