@@ -35,7 +35,7 @@ This repository contains my personal portfolio website, which is built with mode
 
 ## Live Demo
 
-Check out the live version of the portfolio [here](https://github.com/Mbulss)  
+Check out the live version of the portfolio [here](https://mbulss.github.io/Assignment-2-TA/)  
 
 ---
 
